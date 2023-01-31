@@ -7,9 +7,9 @@ export const ModelSelector = ({ modelList, model, setCurrentModel }) => {
   setCurrentModel
   return (
     <>
-      <label htmlFor="cars">Choose a car:</label>
+      <label htmlFor="model">Choose a Model:</label>
 
-      <select name="cars" id="cars">
+      <select name="models" id="models">
         {modelList &&
           modelList.length > 0 &&
           modelList.map((m) => {

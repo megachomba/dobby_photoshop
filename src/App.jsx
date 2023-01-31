@@ -36,7 +36,8 @@ export const App = () => {
   const handleGenerate = async () => {
     switch (menus) {
       case 'txt2img':
-        await handleGenerateTxt2img(currentModel)
+        console.log('txt2img')
+        await handleGenerateTxt2img(currentModel, prompt, negativePrompt)
         break
       default:
         break

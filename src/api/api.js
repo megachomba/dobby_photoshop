@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const baseUrl = 'http://127.0.0.1:7860'
+const localUrl = 'http://127.0.0.1:3000'
 
 export const getConfig = async () => {
   console.log('getConfig')
@@ -24,7 +25,7 @@ export const getModels = async () => {
   }
 }
 
-export const handleGenerateTxt2img = async (model) => {
+export const handleGenerateTxt2img = async (model, prompt, negative_prompt) => {
   const payload = {
     enable_hr: false,
     denoising_strength: 0,
@@ -35,7 +36,7 @@ export const handleGenerateTxt2img = async (model) => {
     hr_second_pass_steps: 0,
     hr_resize_x: 0,
     hr_resize_y: 0,
-    prompt: 'hihi',
+    prompt,
     // styles: [
     //   string
     // ],
@@ -53,7 +54,7 @@ export const handleGenerateTxt2img = async (model) => {
     height: 512,
     restore_faces: false,
     tiling: false,
-    negative_prompt: 'ugly',
+    negative_prompt,
     eta: 0,
     s_churn: 0,
     s_tmax: 0,
@@ -67,7 +68,8 @@ export const handleGenerateTxt2img = async (model) => {
   }
 
   try {
-    const res = await axios.post(`${baseUrl}/sdapi/v1/txt2img`, payload)
+    const res = await axios.post(`${localUrl}/txt2img`, payload)
+    //const res = await axios.post(`${baseUrl}/sdapi/v1/txt2img`, payload)
     console.log('handleGenerateTxt2img', res.data)
   } catch (err) {
     console.log(err)
